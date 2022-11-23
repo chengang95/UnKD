@@ -23,7 +23,7 @@ Key parameters in train_new_api.py:
 + --teacher_dim: Teacher model dimensions.
 + --sampler: Distillation method, such as: UnKD.
 + --datasetpkl: Dataset save location.
-+ others: others: read help, or "python xxx.py --help"
++ others: read help, or "python xxx.py --help"
 
 ## Commands 
 We provide following commands for our models and baselines.
