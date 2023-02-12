@@ -9,10 +9,11 @@ This is an implemention for our WSDM 2023 paper "Unbiased Knowledge Distillation
 + tqdm
 
 ## Datasets
+Data preprocessing through python preprocess_xxx.py
++ Movielens:[original data](https://grouplens.org/datasets/movielens/);  Data preprocessing code：preprocess_ml1m.py
++ CiteULike:[original data](https://github.com/changun/CollMetric); Data preprocessing code：preprocess_cite.py
++ Apps:[original data](http://jmcauley.ucsd.edu/data/amazon/links.html); Data preprocessing code：preprocess_app.py
 
-+ Movielens:[original data](https://grouplens.org/datasets/movielens/);  
-+ CiteULike:[original data](https://github.com/changun/CollMetric);
-+ Apps:[original data](http://jmcauley.ucsd.edu/data/amazon/links.html);
 ## Parameters
 Key parameters in train_new_api.py:
 + --split_group: The number of divided groups.
