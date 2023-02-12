@@ -5,7 +5,7 @@ import os
 
 from torch import optim
 
-from sample import Sample_neg_cate, Sample_DNS_double_cate_epoch
+from sample import Sample_neg_cate
 from model import OneLinear
 from world import cprint
 

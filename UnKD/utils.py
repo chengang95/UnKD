@@ -14,7 +14,6 @@ from time import time
 from torch import nn, optim
 from torch import log, Tensor
 
-from alpha_nDCG import AlphaNDCG
 from dataloader import BasicDataset, Loader
 
 

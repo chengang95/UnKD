@@ -12,8 +12,7 @@ import numpy as np
 from time import time
 from pprint import pprint
 
-from dpp import dpp_sw, dpp
-from sample import DistillSample, Sample_DNS_cate_python, Sample_DNS_cate_epoch, Sample_DNS_double_cate_epoch
+from sample import DistillSample
 # from sample import DistillLogits
 from model import PairWiseModel, BasicModel
 from utils import time2str, timer
@@ -174,56 +173,6 @@ def Distill_DNS(dataset, student, sampler, loss_class, epoch, w=None):
     return info
 
 
-def Distill_DNS_BD(dataset, student,teacher, sampler, bpr_T,bpr_S, epoch, w=None):
-    """Training procedure for distillation methods
-
-    Args:
-        dataset (BasicDatset): defined in dataloader.BasicDataset, loaded in register.py
-        student (PairWiseModel): recommend model with small dim
-        sampler (DS|DL|RD|CD): tons of distill methods defined in sample.py
-        loss_class (utils.BPRLoss): class to get BPR training loss, and BackPropagation
-        epoch (int):
-        w (SummaryWriter, optional): Tensorboard writer
-
-    Returns:
-        str: summary of aver loss and running time for one epoch
-    """
-    bpr_T: utils.BPRLoss = bpr_T
-    bpr_S: utils.BPRLoss = bpr_S
-    student.train()
-    teacher.train()
-    aver_loss = 0
-    aver_kd = 0
-    with timer(name='sampling'):
-        S = sampler.PerSample(epoch)
-    S = torch.Tensor(S).long().cuda()
-    users, posItems, negItems = S[:, 0], S[:, 1], S[:, 2]
-    users, posItems, negItems = utils.shuffle(users, posItems, negItems)
-    total_batch = len(users) // world.config['bpr_batch_size'] + 1
-    for (batch_i, (batch_users, batch_pos, batch_neg)) in enumerate(
-            utils.minibatch(users,
-                            posItems,
-                            negItems,
-                            batch_size=world.config['bpr_batch_size'])):
-        bpr_S.opt.zero_grad()
-        bpr_T.opt.zero_grad()
-        with timer(name="KD"):
-            KD_loss_T,KD_loss_S = sampler.Sample(
-                batch_users, batch_pos, batch_neg, epoch)
-        with timer(name="BP"):
-            cri = bpr_S.stageTwo(batch_users,batch_pos,batch_neg,epoch,KD_loss_S)
-            bpr_T.stageTwo(batch_users, batch_pos, batch_neg, epoch, KD_loss_T)
-        aver_loss += cri
-        if epoch>=100:
-            aver_kd+=KD_loss_S.cpu().item()
-        # Additional section------------------------
-        #
-        # ------------------------------------------
-    aver_loss = aver_loss / total_batch
-    aver_kd = aver_kd / total_batch
-    info = f"{timer.dict()}[KD loss{aver_kd:.3e}][BPR loss{aver_loss:.3e}]"
-    timer.zero()
-    return info
 
 # ******************************************************************************
 # ============================================================================**
