@@ -15,7 +15,7 @@ Data preprocessing through python preprocess_xxx.py
 + Apps:[original data](http://jmcauley.ucsd.edu/data/amazon/links.html); Data preprocessing code：preprocess_app.py
 
 ## Parameters
-Key parameters in train_new_api.py:
+Key parameters in distill_new_api.py:
 + --split_group: The number of divided groups.
 + --sample_num: The number of samples.
 + --recdim: Model dimensions.
