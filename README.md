@@ -31,7 +31,7 @@ We provide following commands for our models and baselines.The following two ste
 #### 1. Train a teacher model:
 + First, We need to train a teacher model.
   ```
-  python -u  train_new_api.py   --dataset=Apps    --recdim=100  --model=MF  --decay=0.01   --epochs=1000 --lr=0.01  --seed=2022
+  python -u  train_new_api.py   --dataset=Apps  --datasetpkl=$location   --recdim=100  --model=MF  --decay=0.01   --epochs=1000 --lr=0.01  --seed=2022
   ```
   
 #### 2. Simply Reproduce the Results:
