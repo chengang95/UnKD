@@ -35,7 +35,7 @@ We provide following commands for our models and baselines.The following two ste
   ```
   
 #### 2. Simply Reproduce the Results:
-+ Second, we have provided the model that we trained for simply reproducing the results in our paper. Then you can run the following commands to reproduce the results in our paper.
++ Then you can run the following commands to reproduce the results in our paper. Note that the name of the teacher model trained in the previous step needs to be modified in the code.
   ```
   python -u  distill_new_api.py   --split_group=4 --sample_num=30   --dataset=Apps   --datasetpkl=$location   --recdim=10  --model=MF  --teacher_model=MF  --decay=0.01   --epochs=1000 --lr=0.01  --seed=2022   --stopflag=ndcg   --teacher_dim=100  --kd_weight=1.0   --sampler=UnKD
   ```
