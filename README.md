@@ -27,7 +27,7 @@ Key parameters in train_new_api.py:
 + others: read help, or "python xxx.py --help"
 
 ## Commands 
-We provide following commands for our models and baselines.The following two steps are required.
+We provide following commands for our method and baselines.The following two steps are required.
 #### 1. Train a teacher model:
 + First, We need to train a teacher model.
   ```
