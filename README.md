@@ -29,7 +29,7 @@ Key parameters in train_new_api.py:
 ## Commands 
 We provide following commands for our method and baselines.The following two steps are required.
 #### 1. Train a teacher model:
-+ First, We need to train a teacher model.
++ First, we need to train a teacher model.
   ```
   python -u  train_new_api.py   --dataset=Apps  --datasetpkl=$location   --recdim=100  --model=MF  --decay=0.01   --epochs=1000 --lr=0.01  --seed=2022
   ```
