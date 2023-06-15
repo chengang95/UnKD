@@ -1,7 +1,7 @@
 """
 @author: Shuxian Bi (stanbi@mail.ustc.edu.cn),Jianbai Ye (gusye@mail.ustc.edu.cn)
 Design Dataset here
-Every dataset's index has to start at 0
+Every dataset's index has to start at 000
 """
 import os
 import pickle
